@@ -27,6 +27,7 @@ class JsonapiControllerTest extends AimeosTestAbstract
 		$response = $this->action('GET', '\Aimeos\Shop\Controller\JsonapiController@getAction', $params, $getParams);
 
 		$json = json_decode( $response->getContent(), true );
+print_r( $json );
 
 		$this->assertResponseOk();
 		$this->assertNotNull( $json );
@@ -42,6 +43,7 @@ class JsonapiControllerTest extends AimeosTestAbstract
 		$response = $this->action('GET', '\Aimeos\Shop\Controller\JsonapiController@getAction', $params);
 
 		$json = json_decode( $response->getContent(), true );
+print_r( $json );
 
 		$this->assertResponseOk();
 		$this->assertNotNull( $json );
