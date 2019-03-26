@@ -25,9 +25,9 @@ class JsonapiControllerTest extends AimeosTestAbstract
 		$params = ['site' => 'unittest', 'resource' => 'product'];
 		$getParams = ['filter' => ['f_search' => 'Cafe Noire Cap']];
 		$response = $this->action('GET', '\Aimeos\Shop\Controller\JsonapiController@getAction', $params, $getParams);
+print_r( $response->getContent() );
 
 		$json = json_decode( $response->getContent(), true );
-print_r( $json );
 
 		$this->assertResponseOk();
 		$this->assertNotNull( $json );
