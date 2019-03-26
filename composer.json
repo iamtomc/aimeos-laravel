@@ -23,7 +23,7 @@
         "doctrine/dbal": "~2.5",
         "laravel/framework": "~5.3",
         "symfony/psr-http-message-bridge": "~1.0",
-        "zendframework/zend-diactoros": "~1.3",
+        "zendframework/zend-diactoros": "<1.8.6",
         "aimeos/aimeos-core": "dev-master",
         "aimeos/ai-swiftmailer": "dev-master",
         "aimeos/ai-gettext": "dev-master",
