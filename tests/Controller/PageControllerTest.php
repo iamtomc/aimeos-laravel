@@ -2,20 +2,12 @@
 
 class PageControllerTest extends AimeosTestAbstract
 {
-	public function testPrivacyAction()
+	public function testIndexAction()
 	{
-		View::addLocation(dirname(__DIR__).'/fixtures/views');
+		View::addLocation( dirname( __DIR__ ) . '/fixtures/views' );
 
-		$this->action('GET', '\Aimeos\Shop\Controller\PageController@privacyAction', ['site' => 'unittest']);
-		$this->assertResponseOk();
-	}
+		$response = $this->action( 'GET', '\Aimeos\Shop\Controller\PageController@indexAction', ['site' => 'unittest', 'path' => 'contact'] );
 
-
-	public function testTermsAction()
-	{
-		View::addLocation(dirname(__DIR__).'/fixtures/views');
-
-		$this->action('GET', '\Aimeos\Shop\Controller\PageController@termsAction', ['site' => 'unittest']);
-		$this->assertResponseOk();
+		$this->assertEquals( 200, $response->getStatusCode() );
 	}
 }
