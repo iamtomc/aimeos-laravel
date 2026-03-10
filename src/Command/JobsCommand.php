@@ -24,6 +24,7 @@ class JobsCommand extends AbstractCommand
 	protected $signature = 'aimeos:jobs
 		{jobs : One or more job controller names like "admin/job customer/email/watch"}
 		{site? : Site codes to execute the jobs for like "default unittest" (none for all)}
+		{--option= : Setup configuration, name and value are separated by colon like "setup/default/demo:1"}
 	';
 
 	/**
@@ -80,9 +81,12 @@ class JobsCommand extends AbstractCommand
 		$langids = $langManager->search( $langManager->filter( true ) )->keys()->toArray();
 		$i18n = $lv->make( 'aimeos.i18n' )->get( $langids );
 
+		$context->setSession( new \Aimeos\Base\Session\None() );
+		$context->setCache( new \Aimeos\Base\Cache\None() );
+
 		$context->setEditor( 'aimeos:jobs' );
 		$context->setI18n( $i18n );
 
-		return $context;
+		return $this->addConfig( $context );
 	}
 }

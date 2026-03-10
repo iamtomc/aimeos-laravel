@@ -29,7 +29,6 @@ class AccountCommand extends AbstractCommand
 		{--super : If account should have super user privileges for all sites}
 		{--admin : If account should have site administrator privileges}
 		{--editor : If account should have limited editor privileges}
-		{--api : If account should be able to access the APIs}
 	';
 
 	/**
@@ -104,10 +103,6 @@ class AccountCommand extends AbstractCommand
 			$user = $this->addGroup( $context, $user, 'editor' );
 		}
 
-		if( $this->option( 'api' ) ) {
-			$user = $this->addGroup( $context, $user, 'api' );
-		}
-
 		return $user;
 	}
 
@@ -127,7 +122,7 @@ class AccountCommand extends AbstractCommand
 		$this->info( sprintf( $msg, $group, $user->getCode(), $site ) );
 
 		$item = $this->getGroupItem( $context, $group );
-		return $user->setGroups( $user->getGroups() + [$item->getId() => $item->getCode()] );
+		return $user->setGroups( array_merge( $user->getGroups(), [$item->getId()] ) );
 	}
 
 

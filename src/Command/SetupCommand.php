@@ -27,7 +27,7 @@ class SetupCommand extends AbstractCommand
 		{tplsite=default : Site used as template for creating the new one}
 		{--q : Quiet}
 		{--v=v : Verbosity level}
-		{--option= : Setup configuration, name and value are separated by colon like "setup/default/demo:1"}
+		{--option=* : Setup configuration, name and value are separated by colon like "setup/default/demo:1"}
 	';
 
 	/**
@@ -63,24 +63,5 @@ class SetupCommand extends AbstractCommand
 			->verbose( $this->option( 'q' ) ? '' : $this->option( 'v' ) )
 			->context( $this->addConfig( $ctx->setEditor( 'aimeos:setup' ) ) )
 			->up( $site, $template );
-	}
-
-
-	/**
-	 * Adds the configuration options from the input object to the given context
-	 *
-	 * @param \Aimeos\MShop\ContextIface $ctx Context object
-	 */
-	protected function addConfig( \Aimeos\MShop\ContextIface $ctx ) : \Aimeos\MShop\ContextIface
-	{
-		$config = $ctx->config();
-
-		foreach( (array) $this->option( 'option' ) as $option )
-		{
-			list( $name, $value ) = explode( ':', $option );
-			$config->set( $name, $value );
-		}
-
-		return $ctx;
 	}
 }
